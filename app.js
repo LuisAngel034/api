@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express=require('express');
 const mongoose=require('mongoose');
-const userRutes=require('./routers/auth');
+const userRutes=require('./routers/auth.js');
 
 //declaramos nuestra variable app para manejar express
 const app=express();
@@ -21,8 +21,11 @@ app.use(userRutes);
 app.listen(port,()=>{
   console.log('La app esta corriendo en el puerto '+port+'...');
 })
+
+console.log(process.env.MONGO_URI)
+
 //conectamos a mongo atlas 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Conectado a MongoDB Atlas'))
   .catch((error) => console.error('Error conectando a MongoDB:', error));
   

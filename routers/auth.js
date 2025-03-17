@@ -1,6 +1,6 @@
 const express=require('express');
 const ruta=express.Router();
-const User=require('../models/user5B');
+const User=require('../models/users5B.js');
 
 ruta.post('/api/auth', async (req,res)=>{
     try{
@@ -14,3 +14,4 @@ ruta.post('/api/auth', async (req,res)=>{
     }
 });
 
+module.exports=ruta
