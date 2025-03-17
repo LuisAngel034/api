@@ -8,33 +8,28 @@ const user5bschema= new mongoose.Schema({
         type:String,
         required:true
     },
-    ap:{
+    Aparterno:{
         type:String,
         required:true,
-        unique:true
     },
-    am:{
+    Amaterno:{
         type:String,
         required:true
     },
     correo:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     telefono:{
         type:String,
         required:true
     },
-    pass:{
+    contrasena:{
         type:String,
         required:true,
-        unique:true
     },
     rol:{
-        type:String,
-        required:true
-    },
-    iot:{
         type:String,
         required:true
     },
@@ -48,4 +43,4 @@ const user5bschema= new mongoose.Schema({
     }
 })
 
-module.exports=mongoose.model('user',user5bschema);
+module.exports=mongoose.model('USERS',user5bschema);
