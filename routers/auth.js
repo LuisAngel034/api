@@ -6,7 +6,7 @@ ruta.post('/api/auth', async (req,res)=>{
 
     try{
         console.log(req.body)
-        let user=await User.findOne({correo:req.body.correo, pass:req.body.pass});
+        let user=await User.findOne({correo:req.body.correo, contraseña:req.body.pass});
         if(!user){
             return res.status(400).json({message:'Usuario no encontrado'});
         }

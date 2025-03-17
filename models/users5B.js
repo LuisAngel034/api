@@ -8,12 +8,12 @@ const user5bschema= new mongoose.Schema({
         type:String,
         required:true
     },
-    ap:{
+    Apaterno:{
         type:String,
         required:true,
         unique:true
     },
-    am:{
+    Amaterno:{
         type:String,
         required:true
     },
@@ -25,16 +25,12 @@ const user5bschema= new mongoose.Schema({
         type:String,
         required:true
     },
-    pass:{
+    contraseña:{
         type:String,
         required:true,
         unique:true
     },
     rol:{
-        type:String,
-        required:true
-    },
-    iot:{
         type:String,
         required:true
     },
