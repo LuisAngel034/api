@@ -44,4 +44,4 @@ const user5bschema= new mongoose.Schema({
     }
 })
 
-module.exports=mongoose.model('user',user5bschema);
+module.exports=mongoose.model('USERS',user5bschema);
