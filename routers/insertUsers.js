@@ -10,17 +10,15 @@ rutaInsertUsers.post('/api/insertUsers', async (req, res) => {
             Amaterno: req.body.Amaterno,
             correo: req.body.correo,
             telefono: req.body.telefono,
-            rol: req.body.rol,
-            pregunta: req.body.pregunta,
-            respuesta: req.body.respuesta,
+            rol: 'usuario',
             "contraseña": req.body["contraseña"]
         });
 
         const usuarioGuardado = await nuevoUsuario.save();
 
-        return res.status(201).json(usuarioGuardado);
+        return res.status(201).json({ status: true, data: usuarioGuardado });
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ status: false, message: err.message });
     }
 });
 
