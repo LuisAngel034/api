@@ -40,4 +40,6 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+console.log('users5B.js');
+
 module.exports = mongoose.model('users', userSchema);
