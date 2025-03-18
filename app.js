@@ -2,6 +2,7 @@ require('dotenv').config();
 const express=require('express');
 const mongoose=require('mongoose');
 const userRutes=require('./routers/auth.js');
+const insertRutes=require('./routers/insertUsers.js');
 
 //declaramos nuestra variable app para manejar express
 const app=express();
@@ -16,6 +17,7 @@ app.get('/',(req,res)=>{
 })
 //agregamos el endtpoint de la ruta usuarios 
 app.use(userRutes);
+app.use(insertRutes);
 
 //creamos el listener del puerto
 app.listen(port,()=>{
