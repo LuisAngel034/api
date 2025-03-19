@@ -11,7 +11,7 @@ rutaInsertUsers.post('/api/insertUsers', async (req, res) => {
             telefono: req.body.telefono,
             correo: req.body.correo,
             rol: 'usuario',
-            "contraseña": req.body["contraseña"]
+            pass: req.body.pass,
         });
 
         const usuarioGuardado = await nuevoUsuario.save();

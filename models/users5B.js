@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    pregunta: {
+    Pregunta: {
         type: String,
         
     },
@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         
     },
-    "contraseña": {
+    pass: {
         type: String,
         required: true
     }
