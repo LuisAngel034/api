@@ -1,18 +1,18 @@
-const express = require('express');
-const ruta = express.Router();
-const Productos = require('../models/productos.js');
+const express=require('express');
+const ruta=express.Router();
+const User=require('../models/productos.js');
 
-ruta.post('/api/ProductosDatos', async (req, res) => {
-  try {
-    console.log(req.body);
-    let productos = await Productos.findOne({ nombre: req.body.nombre });
-    if (!productos) {
-      return res.status(200).json({ message: 'productos no encontrados', status: false });
+ruta.post('/api/consultsProducts', async (req,res)=>{
+    try{
+        console.log(req.body)
+        let user=await User.findOne({nombre:req.body.nombre});
+        if(!user){
+            return res.status(200).json({message:'Usuario no encontrado', status:false});
+        }
+        return res.status(200).json({user, status:true});
+    }catch(err){
+        res.status(500).json({message:err.message});
     }
-    return res.status(200).json({ productos, status: true });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
 });
 
-module.exports = ruta;
+module.exports=ruta

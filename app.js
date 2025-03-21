@@ -4,6 +4,7 @@ const mongoose=require('mongoose');
 const userRutes=require('./routers/auth.js');
 const insertRutes=require('./routers/insertUsers.js');
 const consultas=require('./routers/consults.js');
+const consultasProductos=require('./routers/consultsProducts.js');
 
 //declaramos nuestra variable app para manejar express
 const app=express();
@@ -21,6 +22,7 @@ app.get('/',(req,res)=>{
 app.use(userRutes);
 app.use(insertRutes);
 app.use(consultas);
+app.use(consultasProductos);
 
 //creamos el listener del puerto
 app.listen(port,()=>{

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const SenActInvSchema = new mongoose.Schema({
+const ProductsSchema = new mongoose.Schema({
     nombre: {
         type: String,
         required: true
@@ -16,7 +16,7 @@ const SenActInvSchema = new mongoose.Schema({
     categoria: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'Categoria' // Asegúrate de que 'Categoria' sea el nombre correcto de la colección referenciada
+        ref: 'Categoria',
     },
     imgPortada: {
         type: String,
@@ -26,4 +26,4 @@ const SenActInvSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-module.exports = mongoose.model('productos', SenActInvSchema);
+module.exports = mongoose.model('productos', ProductsSchema);
