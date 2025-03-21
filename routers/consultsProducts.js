@@ -1,15 +1,14 @@
-import express from 'express';
-import { Productos } from '../models/productos.js'; // Asegúrate de que la importación sea correcta
+const express = require('express');
+const rutaProducto = express.Router();
+const Productos = require('../models/productos.js');
 
-const ruta = express.Router();
-
-ruta.get('/api/consultsProducts', async (req, res) => {
+rutaProducto.get('/api/consultsProducts', async (req, res) => {
     try {
-        const lista = await Productos.find(); // Devuelve todos los campos
+        const lista = await Productos.find();
         res.json(lista);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
 
-export default ruta;
+module.exports = rutaProducto;
