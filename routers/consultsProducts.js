@@ -1,18 +1,15 @@
-const express=require('express');
-const ruta=express.Router();
-const User=require('../models/productos.js');
+import express from 'express';
+import { Productos } from '../models/productos.js'; // Asegúrate de que la importación sea correcta
 
-ruta.post('/api/consultsProducts', async (req,res)=>{
-    try{
-        console.log(req.body)
-        let user=await User.findOne({nombre:req.body.nombre});
-        if(!user){
-            return res.status(200).json({message:'Usuario no encontrado', status:false});
-        }
-        return res.status(200).json({user, status:true});
-    }catch(err){
-        res.status(500).json({message:err.message});
+const ruta = express.Router();
+
+ruta.get('/api/consultsProducts', async (req, res) => {
+    try {
+        const lista = await Productos.find(); // Devuelve todos los campos
+        res.json(lista);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
 });
 
-module.exports=ruta
+export default ruta;
