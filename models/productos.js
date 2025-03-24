@@ -16,6 +16,11 @@ const ProductsSchema = new mongoose.Schema({
         required: true,
         min: 0,
     },
+    cantidad: {
+        type: Number,
+        required: true,
+        min: 0,
+    },
     categoria: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
