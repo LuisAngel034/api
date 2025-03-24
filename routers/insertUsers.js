@@ -10,7 +10,7 @@ rutaInsertUsers.post('/api/insertUsers', async (req, res) => {
             Amaterno: req.body.Amaterno,
             telefono: req.body.telefono,
             correo: req.body.correo,
-            rol: 'usuario',
+            rol: 'cliente',
             pass: req.body.pass,
         });
 
