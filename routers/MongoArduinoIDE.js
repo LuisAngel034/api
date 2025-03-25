@@ -9,7 +9,10 @@ ruta.post('/api/sensoresArduino', async (req, res) => {
     
     // Validar campos requeridos
     if (!numero_serie) {
-      return res.status(400).json({ message: 'Número de serie es requerido', status: false });
+      return res.status(400).json({ 
+        message: 'Número de serie es requerido', 
+        status: false 
+      });
     }
 
     // Buscar y actualizar el documento
@@ -22,16 +25,26 @@ ruta.post('/api/sensoresArduino', async (req, res) => {
         sensorNivelAgua,
         $set: { updateAt: new Date() } // Actualizar marca de tiempo
       },
-      { new: true, runValidators: true } // Devolver el documento actualizado y validar
+      { 
+        new: true,       // Devolver el documento actualizado
+        runValidators: true // Validar los datos
+      }
     );
 
     if (!updated) {
-      return res.status(404).json({ message: 'Invernadero no encontrado', status: false });
+      return res.status(404).json({ 
+        message: 'Invernadero no encontrado', 
+        status: false 
+      });
     }
 
+    // Devolver todos los datos, incluyendo el estado de los actuadores
     return res.status(200).json({ 
       message: 'Datos actualizados correctamente',
-      data: updated,
+      data: {
+        ...updated._doc,
+        // Incluir aquí cualquier otro campo que necesites
+      },
       status: true 
     });
     
