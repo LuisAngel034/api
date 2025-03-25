@@ -6,6 +6,7 @@ const insertRutes=require('./routers/insertUsers.js');
 const consultas=require('./routers/consults.js');
 const consultasProductos=require('./routers/consultsProducts.js');
 const consultasCategorias=require('./routers/consultsCategories.js');
+const MongoArduino=require('./routers/MongoArduinoIDE.js');
 
 //declaramos nuestra variable app para manejar express
 const app=express();
@@ -25,6 +26,7 @@ app.use(insertRutes);
 app.use(consultas);
 app.use(consultasProductos);
 app.use(consultasCategorias);
+app.use(MongoArduino);
 
 //creamos el listener del puerto
 app.listen(port,()=>{
