@@ -2,10 +2,24 @@ const express = require('express');
 const ruta = express.Router();
 const Sensores = require('../models/senai.js');
 
-// Endpoint para actualizar el ventilador
+// 1. Endpoint para consultar datos del invernadero (existente)
+ruta.post('/api/sensoresDatos', async (req, res) => {
+  try {
+    console.log(req.body);
+    let sensor = await Sensores.findOne({ numero_serie: req.body.numero_serie });
+    if (!sensor) {
+      return res.status(200).json({ message: 'Invernadero no encontrado', status: false });
+    }
+    return res.status(200).json({ sensor, status: true });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// 2. Endpoint para actualizar el ventilador
 ruta.put('/api/actualizar/ventilador', async (req, res) => {
   try {
-    const { numero_serie, estado } = req.body;
+    const { numero_serie, estado } = req.body; // Se espera un JSON con numero_serie y estado
 
     // Validaciones mejoradas
     if (!numero_serie || typeof estado !== 'boolean') {
