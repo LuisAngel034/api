@@ -110,4 +110,99 @@ ruta.put('/api/actualizar/bomba', async (req, res) => {
   }
 });
 
+
+// En tu archivo de rutas
+ruta.put('/api/actualizar/modo', async (req, res) => {
+  try {
+    const { numero_serie, modo } = req.body;
+
+    if (!numero_serie || !modo) {
+      return res.status(400).json({
+        success: false,
+        message: 'Se requieren numero_serie y modo'
+      });
+    }
+
+    const resultado = await Sensores.findOneAndUpdate(
+      { numero_serie: numero_serie },
+      { $set: { Modo: modo } },
+      { new: true }
+    );
+
+    if (!resultado) {
+      return res.status(404).json({
+        success: false,
+        message: 'Invernadero no encontrado'
+      });
+    }
+
+    res.json({
+      success: true,
+      message: 'Modo actualizado',
+      data: {
+        numero_serie: resultado.numero_serie,
+        Modo: resultado.Modo,
+        updatedAt: resultado.updatedAt
+      }
+    });
+
+  } catch (err) {
+    console.error('Error al actualizar modo:', err);
+    res.status(500).json({
+      success: false,
+      message: 'Error interno del servidor',
+      error: err.message
+    });
+  }
+});
+
+ruta.put('/api/actualizar/umbrales', async (req, res) => {
+  try {
+    const { numero_serie, ActivarVentilador, ActivarBomba } = req.body;
+
+    if (!numero_serie || (ActivarVentilador === undefined && ActivarBomba === undefined)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Se requiere numero_serie y al menos un umbral a actualizar'
+      });
+    }
+
+    const updateData = {};
+    if (ActivarVentilador !== undefined) updateData.ActivarVentilador = ActivarVentilador;
+    if (ActivarBomba !== undefined) updateData.ActivarBomba = ActivarBomba;
+
+    const resultado = await Sensores.findOneAndUpdate(
+      { numero_serie: numero_serie },
+      { $set: updateData },
+      { new: true }
+    );
+
+    if (!resultado) {
+      return res.status(404).json({
+        success: false,
+        message: 'Invernadero no encontrado'
+      });
+    }
+
+    res.json({
+      success: true,
+      message: 'Umbrales actualizados',
+      data: {
+        numero_serie: resultado.numero_serie,
+        ActivarVentilador: resultado.ActivarVentilador,
+        ActivarBomba: resultado.ActivarBomba,
+        updatedAt: resultado.updatedAt
+      }
+    });
+
+  } catch (err) {
+    console.error('Error al actualizar umbrales:', err);
+    res.status(500).json({
+      success: false,
+      message: 'Error interno del servidor',
+      error: err.message
+    });
+  }
+});
+
 module.exports = ruta;
